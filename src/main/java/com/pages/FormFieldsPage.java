@@ -33,6 +33,9 @@ public class FormFieldsPage extends BasePage {
     @FindBy(id = "email")
     private WebElement emailField;
 
+    @FindBy(css = "ul li")
+    private List<WebElement> automationTools;
+
     @FindBy(xpath = "//textarea[@id = 'message']")
     private WebElement messageField;
 
@@ -54,7 +57,7 @@ public class FormFieldsPage extends BasePage {
     public void selectDrinks(String... drinks) {
         for (String drink : drinks) {
             for (WebElement checkbox : drinkCheckboxes) {
-                if (Objects.equals(checkbox.getAttribute("value"), drink)) {
+                if (Objects.equals(checkbox.getDomAttribute("value"), drink)) {
                     if (!checkbox.isSelected()) {
                         checkbox.click();
                     }
@@ -66,7 +69,7 @@ public class FormFieldsPage extends BasePage {
 
     public void selectColor(String color) {
         for (WebElement radioButton : colorRadioButtons) {
-            if (Objects.equals(radioButton.getAttribute("value"), color)) {
+            if (Objects.equals(radioButton.getDomAttribute("value"), color)) {
                 if (!radioButton.isSelected()) {
                     radioButton.click();
                 }
@@ -97,5 +100,20 @@ public class FormFieldsPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.alertIsPresent());
         return driver.switchTo().alert().getText();
+    }
+
+    public String findLongestAutomationToolText() {
+        String longestTool = "";
+        for (WebElement tool : automationTools) {
+            String toolText = tool.getText();
+            if (toolText.length() > longestTool.length()) {
+                longestTool = toolText;
+            }
+        }
+        return longestTool;
+    }
+
+    public int getAutomationToolsSize() {
+        return automationTools.size();
     }
 }
