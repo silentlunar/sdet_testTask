@@ -33,7 +33,7 @@ public class FormFieldsPage extends BasePage {
     @FindBy(id = "email")
     private WebElement emailField;
 
-    @FindBy(css = "ul li")
+    @FindBy(xpath = "//label[text()='Automation tools']/following-sibling::ul/li")
     private List<WebElement> automationTools;
 
     @FindBy(xpath = "//textarea[@id = 'message']")

@@ -34,7 +34,7 @@ public class FormFieldsTest {
         formPage.selectColor("Yellow");
         formPage.selectAutomationOptionByValue("yes");
         formPage.fillEmail("SilentLunar@example.com");
-        formPage.fillMessage("Количество иструментов - " + formPage.getAutomationToolsSize() + ". Инструмент из списка с самым длинным названием - " + formPage.findLongestAutomationToolText() + ".");
+        formPage.fillMessage("Количество инструментов - " + formPage.getAutomationToolsSize() + ". Инструмент из списка с самым длинным названием - " + formPage.findLongestAutomationToolText() + ".");
         formPage.submitForm(driver);
 
         assertEquals("Message received!", formPage.getAlertText(driver));
